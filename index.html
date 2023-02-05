@@ -3,8 +3,43 @@
   <head>
     <meta charset="UTF-8">
     <title>Title of the Document</title>
+
+    <!-- Vega-lite imports -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <!-- JavaScript data files -->
+    <script src="data/test_data.js"></script>
+
   </head>
+
   <body>
-    <!-- content of the page goes here -->
+    <div id="chart"></div>
+    <script>
+        var spec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+            "data": {
+                "values": [
+                    {"date": "2023-02-01", "systolic": 120},
+                    {"date": "2023-02-02", "systolic": 115},
+                    {"date": "2023-02-03", "systolic": 125},
+                    {"date": "2023-02-04", "systolic": 122},
+                    {"date": "2023-02-05", "systolic": 135},
+                    {"date": "2023-02-06", "systolic": 113},
+                    {"date": "2023-02-07", "systolic": 121},
+                    {"date": "2023-02-08", "systolic": 120}
+                ]
+            },
+            "mark": "line",
+            "encoding": {
+                "x": {"field": "date", "type": "temporal", "format": "%Y-%m-%d"},
+                "y": {"field": "systolic", "type": "quantitative"}
+            }
+        };
+        vegaEmbed('#chart', spec).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
   </body>
 </html>
