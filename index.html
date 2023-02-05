@@ -19,14 +19,28 @@
     <script>
         var spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-            "data": {
-                "values": data
-            },
-            "mark": "line",
-            "encoding": {
-                "x": {"field": "date", "type": "temporal", "format": "%Y-%m-%d"},
-                "y": {"field": "systolic", "type": "quantitative"}
-            }
+            "vconcat": [
+                {
+                    "data": {
+                        "values": data
+                    },
+                    "mark": "line",
+                    "encoding": {
+                        "x": {"field": "date", "type": "temporal", "format": "%Y-%m-%d"},
+                        "y": {"field": "systolic", "type": "quantitative"}
+                    }
+                },
+                {
+                    "data": {
+                        "values": data
+                    },
+                    "mark": "line",
+                    "encoding": {
+                        "x": {"field": "date", "type": "temporal", "format": "%Y-%m-%d"},
+                        "y": {"field": "diastolic", "type": "quantitative"}
+                    }
+                }    
+            ]
         };
         vegaEmbed('#chart', spec).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
